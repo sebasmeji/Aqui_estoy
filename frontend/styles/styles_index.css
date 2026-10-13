@@ -1,0 +1,89 @@
+:root{
+    --white: #ffffff;
+    --black: #000000;
+    --very-light-pink: #c7c7c7;
+    --text-input-field: #f7f7f7;
+    --hospital-green: #acd9b2;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.contenedor_login{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    place-items: center;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.form{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.label{
+    text-align: left;
+    font-size: 15px;
+    font-weight: 550;
+    margin-top: 15px;
+    color: var(--black);
+    width: 280px;
+}
+
+.input{
+    width: 280px;
+    height: 40px;
+    border-radius: 7px;
+    border: none;
+    background-color: var(--text-input-field);
+    padding-left: 8px;
+    margin-top: 10px;
+}
+
+.primary-button {
+    background-color: var(--hospital-green);
+    border: none;
+    border-radius: 7px;
+    color: var(--white);
+    padding: 13px 14px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 40px;
+    width: 280px;
+}
+
+p{
+    color: var(--very-light-pink);
+    font-size: 14px;
+}
+
+.title{
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--black);
+}
+
+.logo{
+    width: 150px;
+    margin-bottom: 48px;
+    justify-self: center;
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .logo{
+        display: block;
+        margin: 0 auto;
+    }
+}

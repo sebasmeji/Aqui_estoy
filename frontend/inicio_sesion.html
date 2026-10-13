@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de sesión</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="/imagenes/logos/favicon_yard_sale.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/frontend/styles/inicio_sesion.css">
+</head>
+
+<body>
+    <div class="contenedor_inicio">
+        <div class="form-container">
+            <img src="/imagenes/logos/logo_yard_sale.svg" alt="Logo principal" class="logo">
+
+            <form action="/" class="form">
+                <label for="email" class="label">Usuario</label>
+                <input type="email" id="email" placeholder="ejemplo@gmail.com" class="input input-email" required>
+
+                <label for="password" class="label">Contraseña</label>
+                <input type="password" id="password" placeholder="*********" class="input input-password" required>
+
+                <input type="submit" value="Iniciar sesión" class="primary-button login-button">
+                <a href="nuevo_usuario.html">Soy Nuevo - Crear Usuario</a>
+                <a href="recuperar_contraseña.html">Olvide mi contraseña</a>
+            </form>            
+        </div>
+    </div>
+</body>
+</html>
