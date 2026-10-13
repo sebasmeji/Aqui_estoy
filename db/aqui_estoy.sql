@@ -1,5 +1,3 @@
-DROP DATABASE IF EXISTS aqui_estoy;
-CREATE DATABASE aqui_estoy CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
 USE aqui_estoy;
 SET NAMES utf8mb4;
 SET time_zone = '+00:00';
