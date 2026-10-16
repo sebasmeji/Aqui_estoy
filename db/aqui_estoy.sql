@@ -1,10 +1,8 @@
 USE aqui_estoy;
-
 SET NAMES utf8mb4;
-
 SET time_zone = '+00:00';
 
--- 1. TABLA: usuarios
+
 CREATE TABLE usuarios (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     nombres VARCHAR(80) NOT NULL,
@@ -39,7 +37,7 @@ CREATE TABLE usuarios (
     )
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT = 'Personas que administran o monitorean la plataforma';
 
--- 2. TABLA: dispositivos
+
 CREATE TABLE dispositivos (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     tipo ENUM(
@@ -59,7 +57,7 @@ CREATE TABLE dispositivos (
     KEY idx_dispositivos_ultima_conexion (ultima_conexion)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT = 'Dispositivos que reportan la ubicación';
 
--- 3. TABLA: ubicaciones
+
 CREATE TABLE ubicaciones (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     dispositivos_id BIGINT UNSIGNED NOT NULL,
@@ -96,9 +94,10 @@ CREATE TABLE ubicaciones (
     )
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT = 'Historial de ubicaciones GPS';
 
--- 4. TABLA: zonas_seguras
+
 CREATE TABLE zonas_seguras (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    usuarios_id BIGINT UNSIGNED NOT NULL,
     nombre_zona VARCHAR(80) NOT NULL,
     tipo_zona ENUM(
         'casa',
@@ -114,7 +113,7 @@ CREATE TABLE zonas_seguras (
     KEY idx_zonas_estado (estado)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT = 'Zonas seguras registradas en la plataforma';
 
--- 5. TABLA: notificaciones
+
 CREATE TABLE notificaciones (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     usuario_id BIGINT UNSIGNED NOT NULL,
@@ -138,7 +137,7 @@ CREATE TABLE notificaciones (
     CONSTRAINT fk_notificaciones_usuario FOREIGN KEY (usuario_id) REFERENCES usuarios (id)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT = 'Notificaciones dirigidas a los usuarios';
 
--- 6. TABLA: suscripciones
+
 CREATE TABLE suscripciones (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     usuarios_id BIGINT UNSIGNED NOT NULL,
@@ -157,7 +156,7 @@ CREATE TABLE suscripciones (
     CONSTRAINT fk_suscripciones_usuario FOREIGN KEY (usuarios_id) REFERENCES usuarios (id)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT = 'Historial de suscripciones de los usuarios';
 
--- 7. TABLA: pagos
+
 CREATE TABLE pagos (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     suscripciones_id BIGINT UNSIGNED NOT NULL,
