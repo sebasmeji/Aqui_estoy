@@ -1,29 +1,32 @@
 
-from datetime import date, datetime
 from pydantic import BaseModel, ConfigDict, EmailStr, Field
 from typing import Literal
+
+
+TipoDocumento = Literal["CC", "TI", "CE", "PASAPORTE", "OTRO"]
+EstadoUsuario = Literal["activo", "inactivo", "bloqueado"]
+Parentesco = Literal["madre", "padre", "hijo", "abuela", "otro"]
 
 
 class UsuarioCrear(BaseModel):
     nombres: str = Field(min_length=1, max_length=80)
     apellidos: str = Field(min_length=1, max_length=80)
-    tipo_documento: Literal["CC", "TI", "CE", "PASAPORTE", "OTRO"] | None = None
+    tipo_documento: TipoDocumento | None = None
     documento_identidad: str | None = Field(default=None, max_length=20)
-    fecha_nacimiento: date | None = None
     telefono: str | None = Field(default=None, max_length=20)
     correo: EmailStr
-    contrasena: str = Field(min_length=8, max_length=128)
+    parentesco: Parentesco | None = None
 
 
 class UsuarioActualizar(BaseModel):
-    nombres: str | None = Field(default=None, max_length=80)
-    apellidos: str | None = Field(default=None, max_length=80)
-    tipo_documento: Literal["CC", "TI", "CE", "PASAPORTE", "OTRO"] | None = None
+    nombres: str | None = Field(default=None, min_length=1, max_length=80)
+    apellidos: str | None = Field(default=None, min_length=1, max_length=80)
+    tipo_documento: TipoDocumento | None = None
     documento_identidad: str | None = Field(default=None, max_length=20)
-    fecha_nacimiento: date | None = None
     telefono: str | None = Field(default=None, max_length=20)
     correo: EmailStr | None = None
-    estado: Literal["activo", "inactivo", "bloqueado"] | None = None
+    estado: EstadoUsuario | None = None
+    parentesco: Parentesco | None = None
 
 
 class UsuarioRespuesta(BaseModel):
@@ -34,10 +37,7 @@ class UsuarioRespuesta(BaseModel):
     apellidos: str
     tipo_documento: str | None
     documento_identidad: str | None
-    fecha_nacimiento: date | None
     telefono: str | None
     correo: EmailStr
     estado: str
-    ultimo_acceso: datetime | None
-    creado_en: datetime
-    actualizado_en: datetime
+    parentesco: str | None

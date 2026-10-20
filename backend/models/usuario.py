@@ -1,12 +1,6 @@
 
-from sqlalchemy import (
-    BigInteger,
-    String,
-    Date,
-    DateTime,
-    Enum,
-    text
-)
+from sqlalchemy import String, Enum
+from sqlalchemy.dialects.mysql import BIGINT
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
@@ -18,7 +12,7 @@ class Usuario(Base):
     __tablename__ = "usuarios"
 
     id: Mapped[int] = mapped_column(
-        BigInteger(),
+        BIGINT(unsigned=True),
         primary_key=True,
         autoincrement=True
     )
@@ -36,11 +30,6 @@ class Usuario(Base):
         nullable=True
     )
 
-    fecha_nacimiento: Mapped[Date | None] = mapped_column(
-        Date,
-        nullable=True
-    )
-
     telefono: Mapped[str | None] = mapped_column(
         String(20),
         nullable=True
@@ -52,31 +41,13 @@ class Usuario(Base):
         unique=True
     )
 
-    contrasena_hash: Mapped[str] = mapped_column(
-        String(255),
-        nullable=False
-    )
-
     estado: Mapped[str] = mapped_column(
         Enum("activo", "inactivo", "bloqueado"),
         nullable=False,
-        server_default=text("'activo'")
+        default="activo"
     )
 
-    ultimo_acceso: Mapped[DateTime | None] = mapped_column(
-        DateTime,
+    parentesco: Mapped[str | None] = mapped_column(
+        Enum("madre", "padre", "hijo", "abuela", "otro"),
         nullable=True
-    )
-
-    creado_en: Mapped[DateTime] = mapped_column(
-        DateTime,
-        nullable=False,
-        server_default=text("CURRENT_TIMESTAMP")
-    )
-
-    actualizado_en: Mapped[DateTime] = mapped_column(
-        DateTime,
-        nullable=False,
-        server_default=text("CURRENT_TIMESTAMP"),
-        server_onupdate=text("CURRENT_TIMESTAMP")
     )

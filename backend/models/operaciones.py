@@ -1,23 +1,12 @@
 
 from sqlalchemy import select
 from sqlalchemy.orm import Session
-from pwdlib import PasswordHash
 
 from models.usuario import Usuario
 
-# Configurar el algoritmo seguro para las contraseñas
-password_hash = PasswordHash.recommended()
-
 
 def crear_usuario(db: Session, datos: dict):
-    # Convertir la contraseña original en un hash
-    contrasena_hash = password_hash.hash(datos.pop("contrasena"))
-
-    # Crear el usuario con los datos recibidos
-    usuario = Usuario(
-        **datos,
-        contrasena_hash=contrasena_hash
-    )
+    usuario = Usuario(**datos)
 
     db.add(usuario)
     db.commit()
